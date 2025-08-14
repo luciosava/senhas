@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senhas Online | Senhas Fortes e Seguras</title>
+    
+    <meta name="description" content="Gerador de senhas online rápido e seguro. Crie senhas fortes e aleatórias com apenas um clique para proteger suas contas e aumentar sua segurança digital.">
+    
+    <!-- Meta Keywords (opcional, mas pode ajudar levemente) -->
+    <meta name="keywords" content="gerador de senhas, senhas fortes, criar senha, segurança digital, senha aleatória, online">
+    
+    <!-- Meta Author (opcional) -->
+    <meta name="author" content="Seu Nome ou Marca">
+    <title>Gerador de Senhas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('imagens/fundo.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.4);
+            /* Cor e opacidade */
+            z-index: -1;
+            /* Fica atrás do conteúdo */
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .gerar {
+            background: #007bff;
+            color: white;
+        }
+
+        .gerar:hover {
+            background: #0056b3;
+        }
+
+        .copiar {
+            background: #28a745;
+            color: white;
+        }
+
+        .copiar:hover {
+            background: #1e7e34;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Gerador de Senhas</h1>
+        <input type="number" id="tamanho" placeholder="Tamanho da senha" min="4" max="50">
+        <input type="text" id="senha" readonly placeholder="Sua senha vai aparecer aqui">
+        <div class="botoes">
+            <button class="gerar" onclick="gerarSenha()">Gerar</button>
+            <button class="copiar" onclick="copiarSenha()">Copiar</button>
+        </div>
+    </div>
+
+    <script>
+        function gerarSenha() {
+            let tamanho = parseInt(document.getElementById("tamanho").value);
+
+            if (isNaN(tamanho) || tamanho < 4) {
+                alert("Por favor, insira um número válido com pelo menos 4 caracteres.");
+                return;
+            }
+
+            let caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&*()+0123456789";
+            let senha = "";
+
+            for (let i = 0; i < tamanho; i++) {
+                let randomIndex = Math.floor(Math.random() * caracteres.length);
+                senha += caracteres[randomIndex];
+            }
+
+            document.getElementById("senha").value = senha;
+        }
+
+        function copiarSenha() {
+            let campoSenha = document.getElementById("senha");
+            if (campoSenha.value === "") {
+                alert("Nenhuma senha para copiar!");
+                return;
+            }
+            campoSenha.select();
+            document.execCommand("copy");
+            alert("Senha copiada para a área de transferência!");
+        }
+    </script>
+
+</body>
+
+</html>
